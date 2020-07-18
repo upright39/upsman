@@ -1,0 +1,68 @@
+{%extends 'base.html' %}
+
+{%block title%}
+<title>login</title>
+{%endblock%}
+{%block  content%}
+
+<div class="container-fluid" >
+<div class="row" id="pad">
+    <div class="col-lg-4  col-sm-6  col-xs-6" style="background-color:gray">
+ <h2>login</h2><br>
+
+    {% with messages = get_flashed_messages() %}
+
+
+
+    {%if messages%}
+    {% for message in messages %}
+<div class="alert alert-success alert-dismissable"  role="alert" >
+        <button type="button"  class="close" data-dismiss="alert" aria-label="close" >
+            <span  aria-hidden="true" >x</span>
+
+        </button>
+     {{message}}
+    
+     </div>
+
+
+    {% endfor %}
+
+    {% endif %}
+
+    {% endwith %}
+<h4 style="color:blue">please signup first if you have not </h4>
+
+    <form action="" method="post" novalidate>
+        {{form.csrf_token}}
+        <p>
+            {{form.username.label}}<br>
+            {{form.username(size=32)}}
+            {% for error in form.username.errors %}
+            <span style="color:red">{{error}}</span>
+            {% endfor %}
+
+        </p>
+
+       <p>
+
+           {{form.password.label}}<br>
+           {{form.password(size=32)}}
+            {% for error in form.password.errors %}
+            <span style="color:red">{{error}}</span>
+            {% endfor %}
+       </p>
+
+        <p>
+          <input type="submit" value="login" class="btn btn-success">
+
+        </p>
+    </form>
+        </div>
+    <div class="col-lg-6 col-sm-6">
+<b>DEAR</b> you need to signup first for you to get access to the main page.....,pleas click on the signup
+        and then use the details you signup with and login....
+    </div>
+</div>
+</div>
+{%endblock%}
